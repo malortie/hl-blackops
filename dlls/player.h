@@ -57,8 +57,13 @@
 
 #define CSUITNOREPEAT		32
 
+#if defined ( BLACKOPS_DLL )
+#define	SOUND_FLASHLIGHT_ON		"items/nvg_turnon.wav"
+#define	SOUND_FLASHLIGHT_OFF	"items/nvg_turnoff.wav"
+#else
 #define	SOUND_FLASHLIGHT_ON		"items/flashlight1.wav"
 #define	SOUND_FLASHLIGHT_OFF	"items/flashlight1.wav"
+#endif
 
 #define TEAM_NAME_LENGTH	16
 

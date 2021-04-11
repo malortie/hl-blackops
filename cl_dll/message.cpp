@@ -246,7 +246,11 @@ void CHudMessage::MessageDrawScan( client_textmessage_t *pMessage, float time )
 {
 	int i, j, length, width;
 	const char *pText;
+#if defined ( BLACKOPS_CLIENT_DLL )
+	unsigned char line[512];
+#else
 	unsigned char line[80];
+#endif
 
 	pText = pMessage->pMessage;
 	// Count lines

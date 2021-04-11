@@ -21,7 +21,11 @@
 //
 
 
+#if defined ( BLACKOPS_CLIENT_DLL )
+#define RGB_YELLOWISH 0x00FF0000 //255,0,0
+#else
 #define RGB_YELLOWISH 0x00FFA000 //255,160,0
+#endif // defined ( BLACKOPS_CLIENT_DLL )
 #define RGB_REDISH 0x00FF1010 //255,160,0
 #define RGB_GREENISH 0x0000A000 //0,160,0
 
@@ -537,6 +541,19 @@ private:
 //-----------------------------------------------------
 //
 
+#if defined ( BLACKOPS_CLIENT_DLL )
+//
+//-----------------------------------------------------
+//
+class CHudNightvision : public CHudBase
+{
+public:
+	int Init(void);
+	int VidInit(void);
+	int Draw(float flTime);
+	int MsgFunc_Nightvision(const char *pszName, int iSize, void *pbuf);
+};
+#endif // defined ( BLACKOPS_CLIENT_DLL ) 
 
 class CHud
 {
@@ -611,6 +628,9 @@ public:
 	CHudTextMessage m_TextMessage;
 	CHudStatusIcons m_StatusIcons;
 	CHudBenchmark	m_Benchmark;
+#if defined ( BLACKOPS_CLIENT_DLL )
+	CHudNightvision	m_Nightvision;
+#endif
 
 	void Init( void );
 	void VidInit( void );
