@@ -188,9 +188,7 @@ int gmsgTeamNames = 0;
 int gmsgStatusText = 0;
 int gmsgStatusValue = 0; 
 
-#if defined ( BLACKOPS_DLL )
 int gmsgNightvision = 0;
-#endif
 
 
 void LinkUserMessages( void )
@@ -239,9 +237,7 @@ void LinkUserMessages( void )
 	gmsgStatusText = REG_USER_MSG("StatusText", -1);
 	gmsgStatusValue = REG_USER_MSG("StatusValue", 3); 
 
-#if defined ( BLACKOPS_DLL )
 	gmsgNightvision = REG_USER_MSG("Nightvision", 1);
-#endif
 }
 
 LINK_ENTITY_TO_CLASS( player, CBasePlayer );
@@ -3363,11 +3359,7 @@ CBaseEntity *FindEntityForward( CBaseEntity *pMe )
 
 BOOL CBasePlayer :: FlashlightIsOn( void )
 {
-#if defined ( BLACKOPS_DLL )
 	return FBitSet(pev->effects, EF_BRIGHTLIGHT);
-#else
-	return FBitSet(pev->effects, EF_DIMLIGHT);
-#endif
 }
 
 
@@ -3381,11 +3373,7 @@ void CBasePlayer :: FlashlightTurnOn( void )
 	if ( (pev->weapons & (1<<WEAPON_SUIT)) )
 	{
 		EMIT_SOUND_DYN( ENT(pev), CHAN_WEAPON, SOUND_FLASHLIGHT_ON, 1.0, ATTN_NORM, 0, PITCH_NORM );
-#if defined ( BLACKOPS_DLL )
 		SetBits(pev->effects, EF_BRIGHTLIGHT);
-#else
-		SetBits(pev->effects, EF_DIMLIGHT);
-#endif
 		MESSAGE_BEGIN( MSG_ONE, gmsgFlashlight, NULL, pev );
 		WRITE_BYTE(1);
 		WRITE_BYTE(m_iFlashBattery);
@@ -3393,11 +3381,9 @@ void CBasePlayer :: FlashlightTurnOn( void )
 
 		m_flFlashLightTime = FLASH_DRAIN_TIME + gpGlobals->time;
 
-#if defined ( BLACKOPS_DLL )
 		MESSAGE_BEGIN(MSG_ONE, gmsgNightvision, NULL, pev);
 			WRITE_BYTE(1);
 		MESSAGE_END();
-#endif // defined ( BLACKOPS_DLL )
 	}
 }
 
@@ -3405,11 +3391,7 @@ void CBasePlayer :: FlashlightTurnOn( void )
 void CBasePlayer :: FlashlightTurnOff( void )
 {
 	EMIT_SOUND_DYN( ENT(pev), CHAN_WEAPON, SOUND_FLASHLIGHT_OFF, 1.0, ATTN_NORM, 0, PITCH_NORM );
-#if defined ( BLACKOPS_DLL )
     ClearBits(pev->effects, EF_BRIGHTLIGHT);
-#else
-    ClearBits(pev->effects, EF_DIMLIGHT);
-#endif
 	MESSAGE_BEGIN( MSG_ONE, gmsgFlashlight, NULL, pev );
 	WRITE_BYTE(0);
 	WRITE_BYTE(m_iFlashBattery);
@@ -3417,11 +3399,9 @@ void CBasePlayer :: FlashlightTurnOff( void )
 
 	m_flFlashLightTime = FLASH_CHARGE_TIME + gpGlobals->time;
 
-#if defined ( BLACKOPS_DLL )
 	MESSAGE_BEGIN(MSG_ONE, gmsgNightvision, NULL, pev);
 		WRITE_BYTE(0);
 	MESSAGE_END();
-#endif // defined ( BLACKOPS_DLL )
 }
 
 /*

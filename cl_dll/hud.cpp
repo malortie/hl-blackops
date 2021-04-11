@@ -364,9 +364,7 @@ void CHud :: Init( void )
 	m_AmmoSecondary.Init();
 	m_TextMessage.Init();
 	m_StatusIcons.Init();
-#if defined ( BLACKOPS_CLIENT_DLL )
 	m_Nightvision.Init();
-#endif
 	GetClientVoiceMgr()->Init(&g_VoiceStatusHelper, (vgui::Panel**)&gViewPort);
 
 	m_Menu.Init();
@@ -516,9 +514,7 @@ void CHud :: VidInit( void )
 	m_AmmoSecondary.VidInit();
 	m_TextMessage.VidInit();
 	m_StatusIcons.VidInit();
-#if defined ( BLACKOPS_CLIENT_DLL )
 	m_Nightvision.VidInit();
-#endif
 	GetClientVoiceMgr()->VidInit();
 }
 

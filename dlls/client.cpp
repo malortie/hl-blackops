@@ -598,7 +598,6 @@ void ClientCommand( edict_t *pEntity )
 	{
 		// MenuSelect returns true only if the command is properly handled,  so don't print a warning
 	}
-#if defined ( BLACKOPS_DLL )
 	else if (FStrEq(pcmd, "nightvision"))
 	{
 		CBasePlayer * pPlayer = GetClassPtr((CBasePlayer *)pev);
@@ -610,7 +609,6 @@ void ClientCommand( edict_t *pEntity )
 				pPlayer->FlashlightTurnOff();
 		}
 	}
-#endif // defined ( BLACKOPS_DLL )
 	else
 	{
 		// tell the user they entered an unknown command

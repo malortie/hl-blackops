@@ -112,9 +112,7 @@ BOOL CPython::Deploy( )
 		pev->body = 0;
 	}
 
-#if defined ( BLACKOPS_DLL ) || defined ( BLACKOPS_CLIENT_DLL )
 	m_flSoundDelay = 0;
-#endif // defined ( BLACKOPS_DLL ) || defined ( BLACKOPS_CLIENT_DLL )
 	return DefaultDeploy( "models/v_357.mdl", "models/p_357.mdl", PYTHON_DRAW, "python", UseDecrement(), pev->body );
 }
 
@@ -131,9 +129,7 @@ void CPython::Holster( int skiplocal /* = 0 */ )
 	m_pPlayer->m_flNextAttack = UTIL_WeaponTimeBase() + 1.0;
 	m_flTimeWeaponIdle = UTIL_SharedRandomFloat( m_pPlayer->random_seed, 10, 15 );
 	SendWeaponAnim( PYTHON_HOLSTER );
-#if defined ( BLACKOPS_DLL ) || defined ( BLACKOPS_CLIENT_DLL )
 	m_flSoundDelay = 0;
-#endif // defined ( BLACKOPS_DLL ) || defined ( BLACKOPS_CLIENT_DLL )
 }
 
 void CPython::SecondaryAttack( void )
@@ -239,15 +235,11 @@ void CPython::Reload( void )
 	bUseScope = g_pGameRules->IsMultiplayer();
 #endif
 
-#if defined ( BLACKOPS_DLL ) || defined ( BLACKOPS_CLIENT_DLL )
 	int iResult = DefaultReload( PYTHON_MAX_CLIP, PYTHON_RELOAD, 2.0, bUseScope );
 	if ( iResult )
 	{
 		m_flSoundDelay = gpGlobals->time + 1.5;
 	}
-#else
-	DefaultReload( 6, PYTHON_RELOAD, 2.0, bUseScope );
-#endif // defined ( BLACKOPS_DLL ) || defined ( BLACKOPS_CLIENT_DLL )
 }
 
 
@@ -257,13 +249,11 @@ void CPython::WeaponIdle( void )
 
 	m_pPlayer->GetAutoaimVector( AUTOAIM_10DEGREES );
 
-#if defined ( BLACKOPS_DLL ) || defined ( BLACKOPS_CLIENT_DLL )
 	if (m_flSoundDelay != 0 && m_flSoundDelay <= gpGlobals->time)
 	{
 		EMIT_SOUND(ENT(m_pPlayer->pev), CHAN_WEAPON, "weapons/357_reload1.wav", RANDOM_FLOAT(0.8, 0.9), ATTN_NORM);
 		m_flSoundDelay = 0;
 	}
-#endif // defined ( BLACKOPS_DLL ) || defined ( BLACKOPS_CLIENT_DLL )
 	if (m_flTimeWeaponIdle > UTIL_WeaponTimeBase() )
 		return;
 

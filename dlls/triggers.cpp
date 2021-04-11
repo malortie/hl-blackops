@@ -2428,7 +2428,6 @@ void CTriggerCamera::Move()
 	float fraction = 2 * gpGlobals->frametime;
 	pev->velocity = ((pev->movedir * pev->speed) * fraction) + (pev->velocity * (1-fraction));
 }
-#if defined ( BLACKOPS_DLL )
 //
 // Adapted from TWHL - Using mp3s in Steam
 //
@@ -2495,4 +2494,3 @@ void CTargetMP3Audio::Touch(CBaseEntity *pOther)
 		CLIENT_COMMAND(pOther->edict(), "mp3 play media/Suspense07.mp3\n");
 	}
 }
-#endif // defined ( BLACKOPS_DLL )

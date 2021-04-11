@@ -182,23 +182,14 @@ class CItemSuit : public CItem
 	void Precache( void )
 	{
 		PRECACHE_MODEL ("models/w_suit.mdl");
-#if defined ( BLACKOPS_DLL )
 		PRECACHE_SOUND("items/vest_pickup.wav");
-#endif
 	}
 	BOOL MyTouch( CBasePlayer *pPlayer )
 	{
 		if ( pPlayer->pev->weapons & (1<<WEAPON_SUIT) )
 			return FALSE;
 
-#if defined ( BLACKOPS_DLL )
 		EMIT_SOUND(pPlayer->edict(), CHAN_ITEM, "items/vest_pickup.wav", 1, ATTN_NORM);
-#else
-		if ( pev->spawnflags & SF_SUIT_SHORTLOGON )
-			EMIT_SOUND_SUIT(pPlayer->edict(), "!HEV_A0");		// short version of suit logon,
-		else
-			EMIT_SOUND_SUIT(pPlayer->edict(), "!HEV_AAx");	// long version of suit logon
-#endif // defined ( BLACKOPS_DLL )
 
 		pPlayer->pev->weapons |= (1<<WEAPON_SUIT);
 		return TRUE;
