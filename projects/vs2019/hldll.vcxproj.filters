@@ -34,6 +34,9 @@
     <Filter Include="Header Files\pm_shared">
       <UniqueIdentifier>{37941113-16fa-4ce0-9bdd-a72a1ced8902}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\dlls\blackops">
+      <UniqueIdentifier>{c2dd1d1e-0741-4ab8-8643-e45c7ef8bde0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\dlls\aflock.cpp">
@@ -341,6 +344,9 @@
     </ClCompile>
     <ClCompile Include="..\..\dlls\xen.cpp">
       <Filter>Source Files\dlls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dlls\blackops\hudtoggle.cpp">
+      <Filter>Source Files\dlls\blackops</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
