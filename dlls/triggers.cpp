@@ -2453,6 +2453,7 @@ LINK_ENTITY_TO_CLASS(trigger_mp3audio, CTargetMP3Audio);
 TYPEDESCRIPTION	CTargetMP3Audio::m_SaveData[] =
 {
 	DEFINE_FIELD(CTargetMP3Audio, m_bTriggered, FIELD_BOOLEAN),
+	DEFINE_FIELD( CTargetMP3Audio, m_iszTrack, FIELD_STRING ),
 };
 
 IMPLEMENT_SAVERESTORE(CTargetMP3Audio, CBaseTrigger);
