@@ -2486,12 +2486,7 @@ void CTargetMP3Audio::Touch(CBaseEntity *pOther)
 
 	m_bTriggered = TRUE;
 
-	if (FStrEq(STRING(gpGlobals->mapname), "ops_17th"))
-	{
-		//
-		// Until I finish my FMOD interface, simply use the Steam MP3 player
-		// to play the sound file.
-		//
-		CLIENT_COMMAND(pOther->edict(), "mp3 play media/Suspense07.mp3\n");
-	}
+	char cmd[256] {};
+	std::sprintf( cmd, "mp3 play media/%s\n", STRING(m_iszTrack) );
+	SERVER_COMMAND(cmd);
 }
