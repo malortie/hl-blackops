@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [blackops/1.0.2] - 2021-10-16
+
+### Changed
+
+- Tweaked nightvision color and alpha
+
+### Fixed
+
+- Removed hard-coded audio name in CTargetMP3Audio
+- Nightvision HUD not correctly restored
+
 ## [blackops/1.0.1] - 2021-04-11
 
 ### Added
