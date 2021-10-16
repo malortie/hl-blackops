@@ -2849,6 +2849,13 @@ ReturnSpot:
 	return pSpot->edict();
 }
 
+void CBasePlayer::ToggleHUDNightVision( BOOL bEnable )
+{
+	MESSAGE_BEGIN(MSG_ONE, gmsgNightvision, NULL, pev);
+		WRITE_BYTE(bEnable ? 1 : 0);
+	MESSAGE_END();
+}
+
 void CBasePlayer::Spawn( void )
 {
 	pev->classname		= MAKE_STRING("player");
@@ -2938,6 +2945,8 @@ void CBasePlayer::Spawn( void )
 	m_lastx = m_lasty = 0;
 	
 	m_flNextChatTime = gpGlobals->time;
+
+	m_bRestoreNightvision = FALSE;
 
 	g_pGameRules->PlayerSpawn( this );
 }
@@ -3064,6 +3073,8 @@ int CBasePlayer::Restore( CRestore &restore )
 	//			Barring that, we clear it out here instead of using the incorrect restored time value.
 	m_flNextAttack = UTIL_WeaponTimeBase();
 #endif
+
+	m_bRestoreNightvision = TRUE;
 
 	return status;
 }
@@ -3381,9 +3392,7 @@ void CBasePlayer :: FlashlightTurnOn( void )
 
 		m_flFlashLightTime = FLASH_DRAIN_TIME + gpGlobals->time;
 
-		MESSAGE_BEGIN(MSG_ONE, gmsgNightvision, NULL, pev);
-			WRITE_BYTE(1);
-		MESSAGE_END();
+		ToggleHUDNightVision( TRUE );
 	}
 }
 
@@ -3399,9 +3408,7 @@ void CBasePlayer :: FlashlightTurnOff( void )
 
 	m_flFlashLightTime = FLASH_CHARGE_TIME + gpGlobals->time;
 
-	MESSAGE_BEGIN(MSG_ONE, gmsgNightvision, NULL, pev);
-		WRITE_BYTE(0);
-	MESSAGE_END();
+	ToggleHUDNightVision( FALSE );
 }
 
 /*
@@ -4072,6 +4079,14 @@ void CBasePlayer :: UpdateClientData( void )
 		
 		// Clear off non-time-based damage indicators
 		m_bitsDamageType &= DMG_TIMEBASED;
+	}
+
+	if (m_bRestoreNightvision)
+	{
+		m_bRestoreNightvision = FALSE;
+
+		// Blackops - Show/Hide client nightvision according to previous flashlight state.
+		ToggleHUDNightVision( FlashlightIsOn() );
 	}
 
 	// Update Flashlight

@@ -33,6 +33,10 @@ int CHudNightvision::Init(void)
 	return 1;
 };
 
+void CHudNightvision::Reset(void)
+{
+	m_iFlags &= ~HUD_ACTIVE;
+}
 
 int CHudNightvision::VidInit(void)
 {
@@ -55,6 +59,9 @@ int CHudNightvision::MsgFunc_Nightvision(const char *pszName, int iSize, void *p
 
 int CHudNightvision::Draw(float flTime)
 {
+	if (!(m_iFlags & HUD_ACTIVE))
+		return 0;
+
 	if (!(gHUD.m_iWeaponBits & (1 << (WEAPON_SUIT))))
 		return 1;
 

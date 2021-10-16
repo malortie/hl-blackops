@@ -323,6 +323,8 @@ public:
 	
 	float m_flNextChatTime;
 	
+	void ToggleHUDNightVision( BOOL bEnable );
+	BOOL m_bRestoreNightvision;
 };
 
 #define AUTOAIM_2DEGREES  0.0348994967025

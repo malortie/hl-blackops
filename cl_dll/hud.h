@@ -545,6 +545,7 @@ class CHudNightvision : public CHudBase
 public:
 	int Init(void);
 	int VidInit(void);
+	void Reset(void);
 	int Draw(float flTime);
 	int MsgFunc_Nightvision(const char *pszName, int iSize, void *pbuf);
 };
