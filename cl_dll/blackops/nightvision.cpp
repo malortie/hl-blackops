@@ -68,11 +68,9 @@ int CHudNightvision::Draw(float flTime)
 	int r, g, b, a;
 	int x, y, w, h;
 
-	a = 128;
-
-	UnpackRGB(r, g, b, RGB_YELLOWISH);
-
-	ScaleColors(r, g, b, a);
+	r = 128;
+	g = b = 0;
+	a = 64;
 
 	x = y = 0;
 	w = ScreenWidth;
