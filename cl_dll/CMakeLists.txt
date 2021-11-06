@@ -48,6 +48,7 @@ set(LINK_OPTS_RELEASE
 set(INCLUDE_DIRS 
   ${DLLS_DIR}
   ${CMAKE_CURRENT_SOURCE_DIR}
+  ${CMAKE_CURRENT_SOURCE_DIR}/blackops
   ${PUBLIC_DIR}
   ${COMMON_DIR}
   ${PM_SHARED_DIR}
@@ -184,6 +185,7 @@ set(SOURCE_FILES
   ${GAME_SHARED_DIR}/vgui_slider2.cpp
   ${GAME_SHARED_DIR}/voice_banmgr.cpp
   ${PUBLIC_DIR}/interface.cpp
+  blackops/nightvision.cpp
 )
 
 set(PM_SHARED_SOURCE_FILES
